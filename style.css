@@ -1,0 +1,18 @@
+#homepage{
+  background-image: url("./img.jpg");
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+#skillpage{
+  background-color: #B26363;
+}
+#activitypage{
+  background-color: #1874cd;
+}
+#hobbypage{
+  background-color: #458b74;
+}
+.carousel { height: calc(100vh);}
+.carousel-inner,.carousel-item { height: 100%;}
+.carousel-item img { height: 100%; object-fit: cover; object-position: center;}
