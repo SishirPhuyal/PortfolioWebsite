@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("#flip").click(function(){
+        $("#panel").slideToggle("slow");
+      });
+    });
+    var darkColors = ["darkcoral","darkred","grey","darkgreen","darkblue","purple","darkorange"];
+    var lightColors = ["white","yellow","pink","lightblue","brightorange","lightgrey"];
+    $(document).ready(function(){
+      $("button").click(function(){
+        console.log("Hello");
+        $("body").css({"background-color": darkColors[Math.floor(Math.random() * darkColors.length)],
+        "border-color": darkColors[Math.floor(Math.random() * darkColors.length)],
+        "color": lightColors[Math.floor(Math.random() * lightColors.length)]});
+        $("header").css({"border-color": darkColors[Math.floor(Math.random() * darkColors.length)],
+        "color": lightColors[Math.floor(Math.random() * lightColors.length)]});
+        $("#row").css({"border-color": darkColors[Math.floor(Math.random() * darkColors.length)]})
+      });
+    });
+    </script>
+    <style media="screen">
+    body{
+      background-color: #201d1d;
+      color: white;
+      text-align: center;
+    }
+    body h3{
+      margin-top: 5%;
+      margin-bottom: 5%;
+    }
+    body .img{
+      height: auto;
+      width: 400px;
+      border: solid;
+      border-color: white;
+      margin-bottom: 5%;
+    }
+    body iframe{
+      height: 250px;
+      width: 400px;
+      border: dashed;
+      margin-bottom: 6%;
+    }
+
+    header{
+      color: #d3db5e;
+      border-bottom-style: solid;
+      border-color: #d3db5e;
+    }
+    header h1, body h2{
+      padding-top: 1%;
+      padding-bottom: 1%;
+    }
+    h1{
+      text-align: center;
+    }
+    .carousel img{
+      height: 500px;
+      width: 900px;
+      padding-bottom: 3%;
+    }
+    #row{
+      border-top-style: solid;
+      border-color: #d3db5e;
+    }
+    button{
+      margin-top: 2%;
+    }
+    #panel{
+      text-align: center;
+    }
+    #flip{
+      font-size: 20px;
+    }
+    </style>
+    <title>Git Practice</title>
+  </head>
+  <header>
+    <h1>Praticing Git Bash</h1>
+  </header>
+  <body>
+    <div class="col">
+      <button type="button" class="btn btn-primary btn-lg">Randomize Theme</button>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h2>Favorite Sports</h2>
+        <div id="flip">Click to show and hide the slideshow</div>
+        <div id="panel">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://www.nbcsports.com/sites/nbcsports.com/files/2018/05/06/nbc_pl_mancitymedalceremony_180506_1920x1080_488973.jpg">
+              </div>
+              <div class="carousel-item">
+                <img src="https://i2.wp.com/kzk101.com/wp-content/uploads/2020/05/justin-gaethje-wants-khabib-after-punishing-tony-ferguson-at-ufc-249.jpg?fit=1920%2C1080&ssl=1">
+              </div>
+              <div class="carousel-item">
+                <img src="https://cdn.wallpapersafari.com/55/50/r1mjYe.jpg">
+              </div>
+              <div class="carousel-item">
+                <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PeterDoggers/phpj1q5jv.jpeg">
+              </div>
+            </div>
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="row" class="row">
+      <div class="col">
+        <h3>Cool Panda Pics</h3>
+        <img class="img" src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80">
+        <img class="img" src="https://images.unsplash.com/photo-1540126034813-121bf29033d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80">
+        <img class="img" src="https://images.unsplash.com/photo-1525382455947-f319bc05fb35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=514&q=80">
+      </div>
+      <div class="col">
+        <h3>Funny Videos</h3>
+        <iframe src="https://www.youtube.com/embed/3MHDDSekvcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/ux8GZAtCN-M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/8JTx8llpBxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/oSzgCDIUzq0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="col">
+        <h3>My Diverse Music Taste</h3>
+        <iframe src="https://www.youtube.com/embed/fregObNcHC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/zqflC-as2Qo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/BgK_Er7WZVg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/kijpcUv-b8M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </body>
+</html>
