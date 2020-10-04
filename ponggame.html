@@ -1,0 +1,251 @@
+<html>
+//major credit to Chris DeLeon, an instrutor on udemy, who showed me how to code the basics of pong.
+
+<head>
+	<title>PONG by S.P</title>
+</head>
+
+<style type="text/css" >
+	canvas{
+	border-style: groove;
+	border-width: 15px;
+	border-color: black;
+	}
+</style>
+
+
+<body>
+	<canvas id="gameCanvas" width="900" height="550"></canvas>
+</body>
+
+
+<script>
+var canvas;
+var canvasContext;
+
+var RoundTransitions = false;
+var EndScreen = false;
+var TittleScreen = true;
+
+var ballXpostion = 400;
+var ballXspeed = 10;
+var ballYpostion = 0;
+var ballYspeed = 5;
+
+var playerPaddle = 250;//the y cordinate
+var computerPaddle = 250;//
+
+var gameLevel = 1;
+const PaddleHeight = 100;
+const PaddleWidth = 20;
+var PaddleSpeed = 5;
+var PlayerWin = false;
+var playerScore = 0;
+var computerScore = 0;
+
+const WinningScore = 3;
+const FinalLevel = 2;
+
+
+
+function calMousePos(event){
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+	var mouseY= event.clientY - rect.top - root.scrollTop;
+	return {
+		y:mouseY
+	};//checks where the users mouse is and returns y cordinate
+}
+
+//starts function automatically
+window.onload = function() {
+	canvas = document.getElementById('gameCanvas');//gets canvas from the html
+	canvasContext = canvas.getContext('2d');//allows user to draw on the canvas
+
+	var framesPerSecond = 50;
+	setInterval(function(){
+		drawCanvas();
+		moveCanvas();
+	}, 1000/framesPerSecond);//for ever frame per second, the funtion calls two main functions that draw then move everything on the canvas
+
+	canvas.addEventListener("mousedown",
+	function (event){
+				if(TittleScreen){
+					TittleScreen = false;
+				}
+				if(RoundTransitions){
+					RoundTransitions = false;
+				}
+				if(EndScreen){
+					playerScore = 0;
+					computerScore = 0;
+					EndScreen = false;
+				}
+	});
+	canvas.addEventListener('mousemove',
+	function(event){
+		var mousePos = calMousePos(event);
+		playerPaddle = mousePos.y-(PaddleHeight/2);
+	});// the event listener checks how the user moves his mouse to control the paddle
+}
+
+function showTittleScreen(){
+	canvasContext.fillStyle = "black";
+	canvasContext.font="35px Georgia";
+	canvasContext.fillText("Start Game", canvas.width/2-(canvas.width/10), canvas.height/2);
+	makeRectangle((canvas.width/12), canvas.height-(canvas.height/2.6),canvas.width*.80,canvas.height*.25,"black")
+	canvasContext.font="18px Georgia";
+	canvasContext.fillStyle = "white";
+	canvasContext.fillText("How to Play : In order to beat the computer AI, player needs to reach the final level: "+FinalLevel+".",(canvas.width/10), canvas.height-(canvas.height/3));
+	canvasContext.fillText("The AI gets better every level. If Player loses a round, the AI wins the game.",(canvas.width/10),canvas.height-(canvas.height/4));
+	canvasContext.fillText("To win a round, player needs to score "+WinningScore+" points.",(canvas.width/10),canvas.height-(canvas.height/6));
+}
+
+function showEndScreen(){
+	if (PlayerWin){canvasContext.fillStyle = "black";
+	canvasContext.font="30px Georgia"; canvasContext.fillText("Levels cleared.  Player Won.", canvas.width/6, canvas.height/2);
+}	else {canvasContext.fillStyle = "black"; canvasContext.font="30px Georgia";
+	canvasContext.fillText("Computer Won.", canvas.width/4.5, canvas.height/2);
+	}
+	canvasContext.fillText("Next Game.", canvas.width-(canvas.width/2.5), canvas.height/2);
+	gameLevel = 1;
+	PaddleSpeed = 5;
+}
+
+function computerMovement(){
+	var computerPaddlecenter = computerPaddle + (PaddleHeight/2);
+	if (computerPaddlecenter < ballYpostion-(PaddleHeight/3)){
+			computerPaddle += PaddleSpeed;// if the center of the paddle is less than y postion of the ball, the ai moves 10 px up to catch up with the ball
+	}
+	else if (computerPaddlecenter > ballYpostion-(PaddleHeight/3)){
+		computerPaddle-= PaddleSpeed;// the paddleheight/3 stops the paddle from jittering when approaching the balls
+	}
+
+}
+
+function moveCanvas(){
+		if (TittleScreen || EndScreen || RoundTransitions){
+			return;
+		}
+
+		computerMovement();
+		ballXpostion += ballXspeed;
+		ballYpostion += ballYspeed;
+		if (ballXpostion > (canvas.width-PaddleWidth*2)) { //checks if the ball has reached the same x vaule as the computer paddle
+			if (ballYpostion > computerPaddle && ballYpostion < computerPaddle+PaddleHeight){//checks if the ball hits the paddle
+				ballXspeed = -ballXspeed;
+				ballYspeed = (ballYpostion - (computerPaddle+ (PaddleHeight/2)))/3;
+				//formula to bouce the ball of the paddle with diff speeds based on where it hits
+			}
+		}
+		if (ballXpostion >= canvas.width){ // if ball reaches the end player gets the score
+			playerScore ++;
+			resetBall();
+		}
+		if (ballXpostion < PaddleWidth*2) {
+			if (ballYpostion > playerPaddle && ballYpostion < playerPaddle+PaddleHeight){
+				ballXspeed = -ballXspeed;
+				ballYspeed = (ballYpostion - (playerPaddle+ (PaddleHeight/2)))/3;
+			}
+			if (ballXpostion <= 0){
+				computerScore ++;
+				resetBall();
+			}
+		}
+		if (ballYpostion > canvas.height) {
+			ballYspeed = -ballYspeed
+		}
+		if (ballYpostion < 0) {
+			ballYspeed = -ballYspeed;
+		}
+}
+
+function resetGame(){
+	if(gameLevel>=FinalLevel){
+		EndScreen = true;
+		RoundTransitions = false;
+		PlayerWin = true;
+	}
+	else if (playerScore>computerScore){
+		gameLevel ++;
+		PaddleSpeed = PaddleSpeed*(4/3);//increases speed by a thrid
+		RoundTransitions = true;
+	}
+	if(computerScore>playerScore){
+		EndScreen = true;
+		PlayerWin = false;
+	}
+	playerScore = 0;
+	computerScore = 0;
+}
+
+function resetBall(){
+	if (playerScore==WinningScore || computerScore==WinningScore){ //checks if the game is finished
+		resetGame()
+	}
+	ballXpostion = canvas.width/2;
+	ballYpostion = canvas.height/2;//resets the ball to the middle
+	ballYspeed = Math.floor(Math.random() * 10);
+	if (playerScore > computerScore){
+		ballXspeed = -10;
+	}else if(computerScore > playerScore){
+		ballXspeed = 10;
+	}
+	computerPaddle = canvas.width/2;
+}
+
+function drawItems(){
+	var aiPaddle = makeRectangle(canvas.width-(PaddleWidth*2),computerPaddle,PaddleWidth,PaddleHeight,"black");
+	var paddle = makeRectangle(PaddleWidth,playerPaddle,PaddleWidth,PaddleHeight,"black");//draws the paddles
+	drawLine();
+	canvasContext.fillStyle = "black";
+	canvasContext.font="30px Georgia";
+	canvasContext.fillText("Level: "+gameLevel,50,50);
+	canvasContext.font="80px Georgia";
+	canvasContext.fillText(playerScore, canvas.width/4, canvas.height/2);//displays the scores
+	canvasContext.fillText(computerScore, canvas.width*(3/4), canvas.height/2);//
+	var ball = makeCircle(ballXpostion,ballYpostion,PaddleWidth,"white");
+}
+
+function drawCanvas() {
+	var background = makeRectangle(0,0,canvas.width,canvas.height,"red");
+	if (TittleScreen){//displays the Tittle Screen
+		showTittleScreen();
+		return;
+	}
+	if (RoundTransitions){
+			canvasContext.fillStyle = "black";
+			canvasContext.font="30px Georgia";
+			canvasContext.fillText("Level "+gameLevel+ ". Computer Speed increases by 1/3.", canvas.width/5, canvas.height/2);
+			return;
+	}
+	else if (EndScreen){//displays the End Screen
+		showEndScreen();
+		return;
+	}
+	drawItems();
+}
+
+function makeCircle(positionX,positionY,radius,color){
+	// drawing the ball
+	canvasContext.fillStyle = color;
+	canvasContext.beginPath();
+	canvasContext.arc(positionX, positionY, radius, 0, Math.PI*2,true);
+	canvasContext.fill();
+}
+
+function makeRectangle(leftX,topY,width,height,drawColor){
+	// function that draws the rects on the screen
+	canvasContext.fillStyle = drawColor;
+	canvasContext.fillRect(leftX,topY,width,height);
+}
+
+function drawLine(){ //draws a line down the center
+	for (i = 0; i < canvas.height; i+=20) {
+		canvasContext.fillStyle = "black";
+		canvasContext.fillRect(canvas.width/2,i,5,10);
+	}
+}
+</script>
+
+</html>

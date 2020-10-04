@@ -1,7 +1,19 @@
-button{
-  height: 100px;
-  width: 100px;
-  margin-top: 20%;
+.movingTittle {
+  font-weight: 900;
+  font-size: 3.5em;
+}
+
+h1,.movingTittle .letter {
+  display: inline-block;
+  line-height: 1em;
+  padding-top: 15%;
+}
+h2{
+  text-align: center;
+  font-size: 3.5em;
+}
+h3{
+  text-align: center;
 }
 #homepage{
   background-color: black;
@@ -9,7 +21,7 @@ button{
   text-align: center;
 }
 #skillpage{
-  background-color: #B26363;
+  background-color: #ecf6da;
 }
 #activitypage{
   background-color: #1874cd;
@@ -17,6 +29,38 @@ button{
 #hobbypage{
   background-color: #458b74;
 }
+* {box-sizing: border-box}
+
+.container {
+  width: 100%;
+  background-color: #ddd;
+}
+
+.skills {
+  text-align: right;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+}
+
+.html {width: 95%; background-color: #0cee6c;}
+.css {width: 95%; background-color: #6d3be9;}
+.python {width: 75%; background-color: #fff63a;}
+.js {width: 70%; background-color: #d8122f;}
+
+carousel-control-prev{
+  height: 100%;
+  width: 100%;
+}
 .carousel { height: calc(100vh);}
 .carousel-inner,.carousel-item { height: 100%;}
-.carousel-item img { height: 100%; object-fit: cover; object-position: center;}
+
+.row{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.foodgrid{
+  height: 200px;
+  width: 200px;
+  padding-bottom: 10px;
+}

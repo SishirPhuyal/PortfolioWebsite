@@ -4,6 +4,7 @@ $(document).ready(function(){
   function tracker() {
     if (pagetracker==1) {
       $("#prev").hide();
+
     }
     else if (pagetracker==lastslide) {
       $("#next").hide();
@@ -24,4 +25,18 @@ $(document).ready(function(){
       tracker();
       console.log(pagetracker);
     });
+var textWrapper = document.querySelector('.movingTittle');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: false})
+  .add({
+    targets: '.movingTittle .letter',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i
+  })
+
 });
