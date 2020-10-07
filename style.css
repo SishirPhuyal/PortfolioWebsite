@@ -1,24 +1,34 @@
+html,body{
+  height: 100%;
+}
+body{
+  font-family: 'Sansita Swashed';
+}
+h2, h3, h4, h5{
+ font-family: 'Architects Daughter';
+}
 .movingTittle {
   font-weight: 900;
   font-size: 3.5em;
 }
-
 h1,.movingTittle .letter {
   display: inline-block;
   line-height: 1em;
   padding-top: 15%;
 }
 h2{
+  font-weight: bold;
   text-align: center;
   font-size: 3.5em;
 }
-h3{
+h3, .caption{
   text-align: center;
 }
 #homepage{
   background-color: black;
   color: white;
   text-align: center;
+  padding-top: 7.5%;
 }
 #skillpage{
   background-color: #ecf6da;
@@ -26,13 +36,13 @@ h3{
 #hobbypage{
   background-color: #ffd866;
 }
-#activitypage{
+#academicinfo{
   background-color: #66b2b2;
 }
 
 * {box-sizing: border-box}
 
-.container {
+#skillpage .container {
   width: 100%;
   background-color: #ddd;
 }
@@ -40,7 +50,6 @@ h3{
 .skills {
   text-align: right;
   padding-top: 10px;
-  padding-bottom: 10px;
   color: white;
 }
 
@@ -48,20 +57,100 @@ h3{
 .css {width: 95%; background-color: #6d3be9;}
 .python {width: 75%; background-color: #fff63a;}
 .js {width: 70%; background-color: #d8122f;}
+.nepali {width: 90%; background-color: #669966;}
+.english {width: 95%; background-color: #4b5f81;}
+.hindi {width: 65%; background-color: #F27E4B;}
 
-.carousel { height: calc(100vh);}
-.carousel-inner,.carousel-item { height: 100%;}
+.carousel,.carousel-inner,.carousel-item { height: 100%;}
 
-.row{
-  padding-left: 5%;
-  padding-right: 5%;
+.carousel-item{
+  padding-left: 9%;
+  padding-right: 9%;
 }
 .foodgrid{
-  height: 200px;
-  width: 200px;
-  padding-bottom: 10px;
+  height: 150px;
+  width: 175px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.30);
+}
+.bookpics{
+  padding-top: 10px;
+}
+.chesspic{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid black;
+  border-radius: 10px;
+ }
+ .round {
+    position: absolute;
+    border: 2px double black;
+    width: 100px;
+    height: 95px;
+    border-radius: 100%;
+
 }
 #next, #prev{
   width: 100px;
   height: 100px;
+  background-color: black;
+  border-radius: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  border: 5px ridge white;
+}
+#prev{
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+#cta{
+    width:100%; cursor: pointer; position: absolute;
+}
+
+#cta .arrow{left: 10%;}
+.arrow {position: absolute; bottom: 5px;  margin-left: 38px; width: 50px; height: 50px; background-size: contain; top:22px;}
+.segunda{margin-left: 10px;}
+.next {
+	background-image: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHN0eWxlPi5zdDB7ZmlsbDojZmZmfTwvc3R5bGU+PHBhdGggY2xhc3M9InN0MCIgZD0iTTMxOS4xIDIxN2MyMC4yIDIwLjIgMTkuOSA1My4yLS42IDczLjdzLTUzLjUgMjAuOC03My43LjZsLTE5MC0xOTBjLTIwLjEtMjAuMi0xOS44LTUzLjIuNy03My43UzEwOSA2LjggMTI5LjEgMjdsMTkwIDE5MHoiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzE5LjEgMjkwLjVjMjAuMi0yMC4yIDE5LjktNTMuMi0uNi03My43cy01My41LTIwLjgtNzMuNy0uNmwtMTkwIDE5MGMtMjAuMiAyMC4yLTE5LjkgNTMuMi42IDczLjdzNTMuNSAyMC44IDczLjcuNmwxOTAtMTkweiIvPjwvc3ZnPg==);
+}
+
+@keyframes bounceAlpha {
+  0% {opacity: 1; transform: translateX(0px) scale(1);}
+  25%{opacity: 0; transform:translateX(10px) scale(0.9);}
+  26%{opacity: 0; transform:translateX(-10px) scale(0.9);}
+  55% {opacity: 1; transform: translateX(0px) scale(1);}
+}
+
+.bounceAlpha {
+    animation-name: bounceAlpha;
+    animation-duration:1.4s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+}
+
+.arrow.primera.bounceAlpha {
+    animation-name: bounceAlpha;
+    animation-duration:1.4s;
+    animation-delay:0.2s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+}
+
+.round:hover .arrow{
+    animation-name: bounceAlpha;
+    animation-duration:1.4s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+}
+.round:hover .arrow.primera{
+    animation-name: bounceAlpha;
+    animation-duration:1.4s;
+    animation-delay:0.2s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
 }
