@@ -1,7 +1,4 @@
-$(document).ready(function(){
-  var pagetracker = 1
-  var lastslide = 4
-  function tracker() {
+function tracker() {
     if (pagetracker==1) {
       $("#prev").hide();
 
@@ -14,8 +11,7 @@ $(document).ready(function(){
       $("#next").show();
     }
   }
-  tracker();
-  $("#next").click(function(){
+ $("#next").click(function(){
       $("#next").hide();
       $("#prev").hide();
       setTimeout(() => {
@@ -27,6 +23,7 @@ $(document).ready(function(){
       $("#prev").show();
       console.log(pagetracker);
     });
+
   $("#prev").click(function(){
       $("#next").hide();
       $("#prev").hide();
@@ -38,7 +35,12 @@ $(document).ready(function(){
       $("#next").show();
       $("#prev").show();
       console.log(pagetracker);
-    });
+    
+$(document).ready(function(){
+  var pagetracker = 1
+  var lastslide = 4
+  tracker();
+});
 var textWrapper = document.querySelector('.movingTittle');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
