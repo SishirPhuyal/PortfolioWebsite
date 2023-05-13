@@ -15,8 +15,8 @@ function tracker() {
       $("#next").hide();
       $("#prev").hide();
       setTimeout(() => {
-                        console.log('Hello World!');
-                      }, 1000);
+                        console.log('Page Next!');
+                      }, 10000);
       pagetracker+=1;
       tracker();
       $("#next").show();
@@ -28,8 +28,8 @@ function tracker() {
       $("#next").hide();
       $("#prev").hide();
       setTimeout(() => {
-                          console.log('Hello World!');
-                        }, 1000);
+                          console.log('Page Back!');
+                        }, 10000);
       pagetracker-=1;
       tracker();
       $("#next").show();
