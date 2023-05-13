@@ -16,13 +16,27 @@ $(document).ready(function(){
   }
   tracker();
   $("#next").click(function(){
+      $("#next").hide();
+      $("#prev").hide();
+      setTimeout(() => {
+                        console.log('Hello World!');
+                      }, 1000);
       pagetracker+=1;
       tracker();
+      $("#next").show();
+      $("#prev").show();
       console.log(pagetracker);
     });
   $("#prev").click(function(){
+      $("#next").hide();
+      $("#prev").hide();
+      setTimeout(() => {
+                          console.log('Hello World!');
+                        }, 1000);
       pagetracker-=1;
       tracker();
+      $("#next").show();
+      $("#prev").show();
       console.log(pagetracker);
     });
 var textWrapper = document.querySelector('.movingTittle');
