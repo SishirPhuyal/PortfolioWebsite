@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+    .thumbnail {
+      cursor: pointer;
+    }
+    #photoModalLabel{
+     background-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="mt-4 mb-4 text-center">Sishir's TA 352 Photo Gallery</h1>
+  <div class="row justify-content-center">
+     <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <img src="photo.png" alt="Photo 1" class="img-thumbnail thumbnail" data-toggle="modal" data-target="#photoModal" data-photo="photo.png" data-description="Description for Photo 1" data-tittle="Architectural Detail">
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <img src="photo1.png" alt="Photo 2" class="img-thumbnail thumbnail" data-toggle="modal" data-target="#photoModal" data-photo="photo1.png" data-description="Description for Photo 2" data-tittle="Granite/Brick">
+    </div>
+    <div class="col-md-6">
+      <img src="photo2.png" alt="Photo 3" class="img-thumbnail thumbnail" data-toggle="modal" data-target="#photoModal" data-photo="photo2.png" data-description="Description for Photo 3" data-tittle="Cornices">
+    </div>
+    <div class="col-md-6">
+      <img src="photo3.png" alt="Photo 4" class="img-thumbnail thumbnail" data-toggle="modal" data-target="#photoModal" data-photo="photo3.png" data-description="Description for Photo 4" data-tittle="Cornices">
+    </div>
+    <div class="col-md-6">
+      <img src="photo4.png" alt="Photo 5" class="img-thumbnail thumbnail" data-toggle="modal" data-target="#photoModal" data-photo="photo4.png" data-description="Description for Photo 5"data-tittle=" Marble">
+   </div>
+
+  </div>
+</div>
+
+</body>
+<!-- Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="photoModalLabel">Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="" alt="" class="img-fluid" id="modalPhoto">
+        <br>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.thumbnail').click(function() {
+      var photoUrl = $(this).data('photo');
+      var description = $(this).data('description');
+      var tittle = $(this).data('tittle');
+      $('#modalPhoto').attr('src', photoUrl);
+      $('#modalDescription').text(description);
+      $('#photoModalLabel').text(tittle);
+    });
+  });
+</script>
+</html>
+
